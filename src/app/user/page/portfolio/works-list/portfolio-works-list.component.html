@@ -2,12 +2,17 @@
     <md-icon class="icon" [color]="'primary'">archive</md-icon>
     My works
 </h3>
-<md-icon *ngIf="isEnabledEditMode"
-         mdTooltip="Update"
-         (click)="updateUserReposList()"
-         class="refresh-btn">
-    refresh
-</md-icon>
+<button md-icon-button
+        *ngIf="isEnabledEditMode"
+        mdTooltip="Update"
+        (click)="updateUserReposList()"
+        [disabled]="isExamleMode"
+        class="refresh-btn">
+    <md-icon [color]="'primary'">
+        refresh
+    </md-icon>
+</button>
+
 <ul class="repo-list" *ngIf="initialReposList.length">
     <li class="repo-item" *ngFor="let repo of initialReposList; let i = index">
         <app-portfolio-works-item

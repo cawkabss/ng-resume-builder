@@ -98,20 +98,25 @@ export class UserService {
 
     checkByAdmin(viewUser) {
         return new Promise((resolve, reject) => {
-            this.afAuth.authState.subscribe(auth => {
-                if (auth && viewUser) {
-                    if (viewUser.uid === auth.uid) {
-                        this.$canEditUser.next(true);
-                        resolve(true);
+            if (viewUser.uid === 'example') {
+                this.$canEditUser.next(true);
+                resolve(true);
+            } else {
+                this.afAuth.authState.subscribe(auth => {
+                    if (auth && viewUser) {
+                        if (viewUser.uid === auth.uid) {
+                            this.$canEditUser.next(true);
+                            resolve(true);
+                        } else {
+                            this.$canEditUser.next(false);
+                            resolve(false);
+                        }
                     } else {
                         this.$canEditUser.next(false);
                         resolve(false);
                     }
-                } else {
-                    this.$canEditUser.next(false);
-                    resolve(false);
-                }
-            });
+                });
+            }
         });
     }
 

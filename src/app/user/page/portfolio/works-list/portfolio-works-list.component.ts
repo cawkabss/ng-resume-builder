@@ -16,7 +16,7 @@ export class PortfolioWorksListComponent implements OnInit, OnChanges {
     initialReposList;
     @Input() reposUrl;
     reposStatesList = [];
-
+    isExamleMode = false;
     constructor(private us: UserService, private portServ: PortfolioService) {
     }
 
@@ -56,6 +56,11 @@ export class PortfolioWorksListComponent implements OnInit, OnChanges {
         this.us.$isUserChange.next(true);
     }
     ngOnInit() {
+        this.us.$viewUser.subscribe(viewUser => {
+            if (viewUser.login === 'example') {
+                this.isExamleMode = true;
+            }
+        });
     }
 
     ngOnChanges() {

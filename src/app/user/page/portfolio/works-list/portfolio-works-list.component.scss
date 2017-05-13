@@ -7,6 +7,10 @@
   right: 15px;
   top: 15px;
   cursor: pointer;
+
+  &[disabled] md-icon{
+    color: #c4c4c4;
+  }
 }
 .repo-list{
   display: flex;
