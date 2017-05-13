@@ -1,0 +1,38 @@
+.timeline{
+  padding: 15px 0;
+  border-left: 3px solid #673ab7;
+}
+.timeline-box{
+  padding-left: 25px;
+  position: relative;
+
+  &:before{
+    content: "";
+    position: absolute;
+    width: 25px;
+    height: 2px;
+    left: 0;
+    top: 50%;
+    background: #673ab7;
+    transform: translateY(-50%);
+  }
+
+  &:after{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -7px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #673ab7;
+    transform: translateY(-50%);
+  }
+}
+
+.timeline-box + .timeline-box {
+  margin-top: 20px;
+}
+.error-message{
+  text-align: center;
+}

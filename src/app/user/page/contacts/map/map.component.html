@@ -1,0 +1,22 @@
+<sebm-google-map
+        [zoom]="map.zoom"
+        [latitude]="map.lat"
+        [longitude]="map.lng"
+        [scrollwheel]="false"
+        (centerChange)="changeCenter($event)"
+        (zoomChange)="changeZoom($event)"
+        (mapClick)="mapClicked($event)">
+  <sebm-google-map-marker
+          [latitude]="map.marker?.lat"
+          [longitude]="map.marker?.lng">
+
+    <sebm-google-map-info-window>
+      <strong>InfoWindow content</strong>
+    </sebm-google-map-info-window>
+
+  </sebm-google-map-marker>
+</sebm-google-map>
+
+<p *ngIf="isEnabledEditMode">
+  * You can: change zoom, change center, set marker.
+</p>

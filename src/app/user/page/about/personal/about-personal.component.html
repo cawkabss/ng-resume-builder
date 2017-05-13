@@ -1,0 +1,97 @@
+<h3 class="page-block-title" appPageBlockTitle>
+    <md-icon class="icon" [color]="'primary'">info</md-icon>
+    personal info
+</h3>
+<form #aboutPersonalForm="ngForm">
+    <ul class="about-info-list">
+        <li class="about-info-i">
+            <md-icon class="icon" [color]="'primary'">g_translate</md-icon>
+            <div class="about-info-prop">
+                <h4 *ngIf="!isEnabledEditMode" class="about-info-i-title">Language</h4>
+                <span *ngIf="!isEnabledEditMode">{{aboutUser.languages}}</span>
+
+                <div *ngIf="isEnabledEditMode" class="about-personal-form">
+                    <md-input-container>
+                        <input mdInput
+                               [(ngModel)]="aboutUser.languages"
+                               #languages="ngModel"
+                               [placeholder]="'Languages'"
+                               name="languages"
+                               (change)="onUserChange(aboutPersonalForm.valid)" required>
+                        <md-error *ngIf="languages.hasError('required')">
+                            This field is required!
+                        </md-error>
+                    </md-input-container>
+                </div>
+
+            </div>
+        </li>
+        <li class="about-info-i">
+            <md-icon class="icon" [color]="'primary'">date_range</md-icon>
+            <div class="about-info-prop">
+                <h4 *ngIf="!isEnabledEditMode" class="about-info-i-title">Date of birthday</h4>
+                <span *ngIf="!isEnabledEditMode">{{aboutUser.birthDay | date:'mediumDate'}}</span>
+
+                <div *ngIf="isEnabledEditMode" class="about-personal-form">
+                    <md-input-container>
+                        <input mdInput
+                               [(ngModel)]="aboutUser.birthDay"
+                               type="date"
+                               name="birthDay"
+                               #birthDay="ngModel"
+                               [placeholder]="'Birth Day'"
+                               (change)="onUserChange(aboutPersonalForm.valid)" required>
+                        <md-error *ngIf="birthDay.hasError('required')">
+                            This field is required!
+                        </md-error>
+                    </md-input-container>
+                </div>
+
+            </div>
+        </li>
+        <li class="about-info-i">
+            <md-icon class="icon" [color]="'primary'">room</md-icon>
+            <div class="about-info-prop">
+                <h4 *ngIf="!isEnabledEditMode" class="about-info-i-title">Location</h4>
+                <span *ngIf="!isEnabledEditMode">{{aboutUser.location}}</span>
+
+                <div *ngIf="isEnabledEditMode" class="about-personal-form">
+                    <md-input-container>
+                        <input mdInput
+                               [(ngModel)]="aboutUser.location"
+                               #location="ngModel"
+                               name="location"
+                               [placeholder]="'Location'"
+                               (change)="onUserChange(aboutPersonalForm.valid)" required>
+                        <md-error *ngIf="location.hasError('required')">
+                            This field is required!
+                        </md-error>
+                    </md-input-container>
+                </div>
+
+            </div>
+        </li>
+        <li class="about-info-i">
+            <md-icon class="icon" [color]="'primary'">gavel</md-icon>
+            <div class="about-info-prop">
+                <h4 *ngIf="!isEnabledEditMode" class="about-info-i-title">Relationship</h4>
+                <span *ngIf="!isEnabledEditMode">{{aboutUser.relationship}}</span>
+
+                <div *ngIf="isEnabledEditMode" class="about-personal-form">
+                    <md-input-container>
+                        <input mdInput
+                               [(ngModel)]="aboutUser.relationship"
+                               #relationship="ngModel"
+                               name="relationship"
+                               [placeholder]="'Relationship'"
+                               (change)="onUserChange(aboutPersonalForm.valid)" required>
+                        <md-error *ngIf="relationship.hasError('required')">
+                            This field is required!
+                        </md-error>
+                    </md-input-container>
+                </div>
+
+            </div>
+        </li>
+    </ul>
+</form>

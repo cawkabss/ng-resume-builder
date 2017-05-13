@@ -1,0 +1,77 @@
+<app-page [pageTitle]="'contacts'">
+    <form #contactsForm="ngForm">
+        <ul class="contacts-list">
+            <li class="contacts-i">
+                <md-icon class="icon" [color]="'primary'">email</md-icon>
+                <div *ngIf="!isEnabledEditMode" class="contacts-i-type">
+                    <h4 class="h4">Email</h4>
+                    <p>{{viewUser.contacts.email}}</p>
+                </div>
+                <div *ngIf="isEnabledEditMode" class="contacts-i-type">
+                    <md-input-container>
+                        <input mdInput
+                               [(ngModel)]="viewUser.contacts.email"
+                               #email="ngModel"
+                               name="email"
+                               [email]="true"
+                               [placeholder]="'Email'"
+                               (change)="onUserChange(contactsForm.valid)" required>
+                        <md-error *ngIf="email.hasError('required')">
+                            This field is required!
+                        </md-error>
+                        <md-error *ngIf="email.hasError('email')">
+                            Email is not valid!
+                        </md-error>
+                    </md-input-container>
+                </div>
+            </li>
+            <li class="contacts-i">
+                <md-icon class="icon" [color]="'primary'">phone</md-icon>
+                <div *ngIf="!isEnabledEditMode" class="contacts-i-type">
+                    <h4 class="h4">Phone</h4>
+                    <p>{{viewUser.contacts.phone}}</p>
+                </div>
+                <div *ngIf="isEnabledEditMode" class="contacts-i-type">
+                    <md-input-container>
+                        <input mdInput
+                               [(ngModel)]="viewUser.contacts.phone"
+                               #phone="ngModel"
+                               name="phone"
+                               [placeholder]="'Phone'"
+                               (change)="onUserChange(contactsForm.valid)" required>
+                        <md-error *ngIf="phone.hasError('required')">
+                            This field is required!
+                        </md-error>
+                    </md-input-container>
+                </div>
+            </li>
+            <li class="contacts-i">
+                <md-icon class="icon" [color]="'primary'">voice_chat</md-icon>
+                <div *ngIf="!isEnabledEditMode" class="contacts-i-type">
+                    <h4 class="h4">Skype</h4>
+                    <p>{{viewUser.contacts.skype}}</p>
+                </div>
+                <div *ngIf="isEnabledEditMode" class="contacts-i-type">
+                    <md-input-container>
+                        <input mdInput
+                               [(ngModel)]="viewUser.contacts.skype"
+                               #skype="ngModel"
+                               [placeholder]="'Skype'"
+                               name="skype"
+                               (change)="onUserChange(contactsForm.valid)" required>
+                        <md-error *ngIf="skype.hasError('required')">
+                            This field is required!
+                        </md-error>
+                    </md-input-container>
+                </div>
+            </li>
+        </ul>
+    </form>
+    <app-map
+            [map]="viewUser.contacts.map"
+            appPageBlock>
+    </app-map>
+    <app-form appPageBlock
+              [userUid]="viewUser.uid">
+    </app-form>
+</app-page>

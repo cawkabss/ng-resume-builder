@@ -1,0 +1,32 @@
+  <h1 class="h1 home-title">
+    Resume Builder
+  </h1>
+  <section class="home-content">
+    <div class="home-content-block">
+      <img src="../../assets/img/home-img.png" class="home-content-img">
+    </div>
+    <div *ngIf="loginUser; else newUser" class="home-content-block action-block">
+      <h3 class="h3 home-content-action-text">
+        Hello <br><span class="_bold">{{loginUser?.name}}</span>!
+      </h3>
+      <button class="home-content-action-btn" [color]="'primary'"
+              (click)="toUserProfile()"
+              md-raised-button>
+        Go to my resume!
+      </button>
+    </div>
+    <ng-template #newUser>
+      <div class="home-content-block action-block">
+        <h3 class="h3 home-content-action-text">
+          Create resume from<br> your <span class="_bold">GitHub</span> profile
+        </h3>
+        <div class="home-content-action-btns">
+          <button class="home-content-action-btn" [color]="'primary'"
+                  (click)="signIn()"
+                  md-raised-button>
+            Sign in!
+          </button>
+        </div>
+      </div>
+    </ng-template>
+  </section>

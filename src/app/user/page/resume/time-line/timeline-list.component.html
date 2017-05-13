@@ -1,0 +1,16 @@
+<ul class="timeline">
+  <li class="timeline-box" *ngFor="let timelineItem of timelineList; let i = index">
+    <app-timeline-item
+            [isEnabledEditMode]="isEnabledEditMode"
+            [timelineItem]="timelineItem"
+            (boxUpdated)="boxUpdated($event, i)"
+            (deleteBox)="deleteBox(i)">
+    </app-timeline-item>
+  </li>
+  <li class="timeline-box" *ngIf="isEnabledEditMode">
+    <app-timeline-form (addBox)="addBox($event)"></app-timeline-form>
+  </li>
+</ul>
+<md-error *ngIf="!timelineList.length" class="error-message">
+  <h3>This is section can`t be an empty!</h3>
+</md-error>

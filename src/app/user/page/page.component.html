@@ -1,0 +1,38 @@
+<h2 class="h2 page-title">
+    <span>{{pageTitle}}</span></h2>
+
+<ng-content></ng-content>
+
+<ul class="control-btns-list" *ngIf="canEditUser && canEditPage">
+    <li class="control-btn-i" *ngIf="!isEnabledEditMode">
+        <button class="control-btn"
+                mdTooltip="Edit page!"
+                [color]="'primary'"
+                md-mini-fab
+                [mdTooltipPosition]="'above'"
+                (click)="editPage()">
+            <md-icon>mode_edit</md-icon>
+        </button>
+    </li>
+    <li class="control-btn-i" *ngIf="isUserChange">
+        <button class="control-btn"
+                [disabled]="!canSavePage || !canSaveAside"
+                mdTooltip="Save!"
+                [color]="'accent'"
+                (click)="savePage()"
+                [mdTooltipPosition]="'above'"
+                md-mini-fab>
+            <md-icon>check</md-icon>
+        </button>
+    </li>
+    <li class="control-btn-i" *ngIf="isEnabledEditMode">
+        <button class="control-btn"
+                mdTooltip="Cancel!"
+                [color]="'warn'"
+                (click)="cancelChanges()"
+                [mdTooltipPosition]="'above'"
+                md-mini-fab>
+            <md-icon>clear</md-icon>
+        </button>
+    </li>
+</ul>

@@ -1,0 +1,34 @@
+<div class="user-photo" [style.background-image]="'url(' + (viewUser).avatar_url + ')'">
+    <div class="file-upload-wrapper" *ngIf="$isEnabledEditMode | async">
+        <app-upload-file class="file-upload-component"
+                         [allowedExtensions]="['jpg', 'png']"
+                         [btnIcon]="'image'"
+                         [btnTooltip]="'Upload image'"
+                         [btnType]="'fab'"
+                         [folderOnStorage]="'images'"
+                         [fileName]="'avatar'"
+                         (upload)="getDownloadUrl($event)"
+                         (progress)="getProgress($event)">
+        </app-upload-file>
+        <md-progress-bar
+                *ngIf="progress"
+                [mode]="'determinate'"
+                [value]="progress">
+        </md-progress-bar>
+    </div>
+</div>
+<div class="user-name">
+    <div *ngIf="$isEnabledEditMode | async" class="aside-form">
+        <md-input-container [color]="'accent'">
+            <input mdInput
+                   [(ngModel)]="viewUser.name"
+                   #name="ngModel"
+                   [placeholder]="'My name'"
+                   (change)="onUserChange(name.valid)" required>
+            <md-error *ngIf="name.hasError('required')">
+                This field is required!
+            </md-error>
+        </md-input-container>
+    </div>
+    <h1 *ngIf="!($isEnabledEditMode | async)" class="h1">I`m {{viewUser.name}}</h1>
+</div>

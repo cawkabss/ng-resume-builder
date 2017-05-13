@@ -1,0 +1,45 @@
+:host{
+  display: block;
+}
+
+.about-info-list{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.about-info-i{
+  display: flex;
+  align-items: center;
+  line-height: 1;
+  max-width: 100%;
+  width: 100%;
+  margin-top: 20px;
+}
+@media only screen and (min-width : 768px) {
+  .about-info-i{
+    max-width: 50%;
+  }
+}
+@media only screen and (min-width : 992px) {
+  .about-info-i{
+    max-width: 20%;
+  }
+}
+
+.about-info-i-icon{
+  margin-right: 5px;
+  font-size: 36px;
+  color: #3f51b5;
+}
+.about-info-prop{
+  width: 100%;
+}
+md-input-container{
+  width: 100%;
+}
+.about-info-i-title{
+  margin-bottom: 4px;
+}
+.about-info-i-value{
+  display: block;
+}

@@ -1,0 +1,62 @@
+.item-card{
+  position: relative;
+  transition: all .5s;
+}
+.hidden{
+  opacity: 0.5;
+
+}
+.hideCheckBox{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+md-card-subtitle{
+  display: flex;
+  align-items: center;
+}
+.file-upload-wrapper{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  flex-grow: 1;
+  width: 100%;
+  flex-direction: column;
+  overflow: hidden;
+  transition: all .5s;
+
+  &:hover {
+    background: rgba(0, 0, 0, .4);
+  }
+  &:hover .file-upload-component{
+    visibility: visible;
+    opacity: 1;
+  }
+}
+.file-upload-component{
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+}
+div[md-card-image]{
+  position: relative;
+  padding-top: 75%;
+  background: center no-repeat;
+  background-size: cover;
+}
+md-card-header{
+  display: flex;
+  flex-direction: column;
+}
+.item-tags-form{
+  width: 100%;
+}
+md-input-container{
+  width: 100%;
+}

@@ -1,0 +1,42 @@
+<form #aboutHeaderForm="ngForm">
+    <div class="page-block-title">
+        <md-icon class="icon" [color]="'primary'">bookmark</md-icon>
+
+        <h3 *ngIf="!isEnabledEditMode" class="h3 about-header-title">{{aboutUser?.whoIam}}</h3>
+        <div *ngIf="isEnabledEditMode" class="about-header-form">
+            <md-input-container>
+                <input mdInput
+                       [(ngModel)]="aboutUser.whoIam"
+                       #title="ngModel"
+                       name="title"
+                       [placeholder]="'Who I`m'"
+                       (change)="onUserChange(aboutHeaderForm.valid)" required>
+                <md-error *ngIf="title.hasError('required')">
+                    This field is required!
+                </md-error>
+            </md-input-container>
+        </div>
+    </div>
+    <div class="page-block-description">
+
+        <p *ngIf="!isEnabledEditMode" class="about-header-desc">
+            {{aboutUser.aboutMe}}
+        </p>
+        <div *ngIf="isEnabledEditMode" class="about-header-form">
+            <md-input-container>
+        <textarea mdInput
+                  mdTextareaAutosize
+                  [(ngModel)]="aboutUser.aboutMe"
+                  [value]="aboutUser.aboutMe"
+                  #aboutMe="ngModel"
+                  name="desc"
+                  [placeholder]="'About me'"
+                  (change)="onUserChange(aboutHeaderForm.valid)" required>
+        </textarea>
+                <md-error *ngIf="aboutMe.hasError('required')">
+                    This field is required!
+                </md-error>
+            </md-input-container>
+        </div>
+    </div>
+</form>

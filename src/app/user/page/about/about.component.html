@@ -1,0 +1,17 @@
+<app-page [pageTitle]="'about me'">
+    <app-about-header
+            appPageBlock
+            [aboutUser]="($viewUser | async)?.about"
+            [isEnabledEditMode]="isEnabledEditMode">
+    </app-about-header>
+    <app-about-personal
+            appPageBlock
+            [aboutUser]="($viewUser | async)?.about"
+            [isEnabledEditMode]="isEnabledEditMode">
+    </app-about-personal>
+    <app-about-skills
+            appPageBlock
+            [aboutUser]="($viewUser | async)?.about"
+            [isEnabledEditMode]="isEnabledEditMode">
+    </app-about-skills>
+</app-page>

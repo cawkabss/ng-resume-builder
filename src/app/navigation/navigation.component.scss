@@ -1,0 +1,42 @@
+:host{
+  width: 100%;
+}
+.nav{
+  padding: 10px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.298039);
+}
+.tabs-list{
+  display: none;
+  flex-grow: 1;
+}
+.tabs-list-mob{
+  flex-grow: 1;
+}
+.nav-list{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.nav-item{
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-weight: 700;
+  transition: all .5s;
+}
+.nav-item-btn{
+  color: #fff;
+  text-transform: uppercase;
+
+  &.active{
+    background: #fff;
+    color: #303f9f;
+
+    .icon{
+      transform: rotateY(360deg);
+    }
+  }
+  & .icon{
+    transition: transform .5s;
+  }
+}

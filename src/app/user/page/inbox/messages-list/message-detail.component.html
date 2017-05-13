@@ -1,0 +1,29 @@
+<div class="message-controls">
+    <button class="nav-item-btn"
+            md-icon-button
+            mdTooltip="back"
+            (click)="back()">
+        <md-icon [color]="'primary'">
+            undo
+        </md-icon>
+    </button>
+    <button class="nav-item-btn"
+            md-icon-button
+            mdTooltip="delete"
+            (click)="deleteMessage()">
+        <md-icon [color]="'warn'">
+            delete
+        </md-icon>
+    </button>
+</div>
+<header class="message-header">
+    <div class="message-header-line">
+        <h4>{{message?.name}} ({{message?.subject}})</h4>
+        <span>{{message?.date}}</span>
+    </div>
+    <div class="message-header-line">
+        <h4>{{message?.email}}</h4>
+    </div>
+</header>
+
+<article class="message-text">{{message?.message}}</article>

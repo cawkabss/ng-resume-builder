@@ -1,0 +1,31 @@
+<article class="timeline-box-wrapper">
+    <header class="timeline-box-header">
+        <h4 class="h4 timeline-box-title">
+            {{timelineItem.title}}
+        </h4>
+        <div class="timeline-box-years">
+          <span>
+            {{timelineItem.yearStart}}
+          </span>
+            -
+            <span>
+            {{timelineItem.yearEnd}}
+          </span>
+        </div>
+    </header>
+    <p class="timeline-box-desc">
+        {{timelineItem.desc}}
+    </p>
+    <button *ngIf="isEnabledEditMode" class="delete-btn"
+            mdTooltip="Delete"
+            (click)="deleteBox.emit()">
+        <md-icon [color]="'warn'">delete</md-icon>
+    </button>
+</article>
+
+<!--<app-timeline-form *ngIf="isEnabledEditMode"-->
+                   <!--[timelineItem]="timelineItem"-->
+                   <!--[editMode]="true"-->
+                   <!--(deleteBox)="deleteBox.emit()"-->
+                   <!--(changeBox)="changeBox($event)">-->
+<!--</app-timeline-form>-->

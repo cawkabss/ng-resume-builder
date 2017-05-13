@@ -1,0 +1,23 @@
+<md-list>
+  <h3 md-subheader>Messages</h3>
+  <p *ngIf="!(messagesList | async)?.length">
+    You are don't have any messages.
+  </p>
+  <div *ngFor="let message of messagesList | async">
+    <md-list-item (click)="showDetail(message)">
+      <md-icon md-list-icon *ngIf="!message.showed">mail</md-icon>
+      <md-icon md-list-icon *ngIf="message.showed">drafts</md-icon>
+      <h4 md-line>{{message.name}} ({{message.subject}})</h4>
+      <p md-line> {{message.date}} </p>
+      <button class="nav-item-btn"
+              [md-tooltip]="'Show detail'"
+              md-icon-button>
+        <md-icon>
+          arrow_forward
+        </md-icon>
+      </button>
+    </md-list-item>
+    <md-divider></md-divider>
+  </div>
+</md-list>
+<router-outlet></router-outlet>

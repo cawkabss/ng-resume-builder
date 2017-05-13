@@ -1,0 +1,24 @@
+<div class="page-block-description">
+
+  <p *ngIf="!isEnabledEditMode" class="resume-header-desc">
+    {{portfolio.desc}}
+  </p>
+
+  <div *ngIf="isEnabledEditMode" class="resume-header-form">
+    <md-input-container>
+        <textarea mdInput
+                  mdTextareaAutosize
+                  [(ngModel)]="portfolio.desc"
+                  [value]="portfolio.desc"
+                  #desc="ngModel"
+                  [placeholder]="'Description'"
+                  (change)="onUserChange(desc.valid)" required>
+          <md-error *ngIf="desc.hasError('required')">
+      This field is required!
+    </md-error>
+        </textarea>
+    </md-input-container>
+
+  </div>
+
+</div>

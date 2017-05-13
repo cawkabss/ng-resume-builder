@@ -1,0 +1,66 @@
+<form #timelineForm="ngForm">
+    <div class="timeline-box-wrapper">
+        <div class="timeline-box-header">
+            <md-input-container class="timeline-box-title">
+                <input mdInput
+                       (change)="onChangeBox(timelineForm.value, timelineForm.valid)"
+                       [(ngModel)]="timelineItem.title"
+                       #title="ngModel"
+                       name="title"
+                       placeholder="Title"
+                       type="text"
+                       required>
+                <md-error *ngIf="title.hasError('required')">
+                    This field is required!
+                </md-error>
+            </md-input-container>
+
+            <div class="timeline-box-years">
+                <md-select
+                        (change)="onChangeBox(timelineForm.value, timelineForm.valid)"
+                        [(ngModel)]="timelineItem.yearStart"
+                        name="yearStart"
+                        placeholder="start"
+                        required>
+                    <md-option *ngFor="let year of yearsRange" [value]="year">
+                        {{ year }}
+                    </md-option>
+                </md-select>
+                -
+                <md-select
+                        (change)="onChangeBox(timelineForm.value, timelineForm.valid)"
+                        [(ngModel)]="timelineItem.yearEnd"
+                        name="yearEnd"
+                        placeholder="End"
+                        required>
+                    <md-option *ngFor="let year of yearsRange"
+                               [value]="year">{{ year }}
+                    </md-option>
+                </md-select>
+            </div>
+        </div>
+        <div class="timeline-box-desc">
+            <md-input-container class="textarea">
+    <textarea mdInput
+              mdTextareaAutosize
+              (change)="onChangeBox(timelineForm.value, timelineForm.valid)"
+              [(ngModel)]="timelineItem.desc"
+              [value]="timelineItem.desc"
+              #desc="ngModel"
+              name="desc"
+              placeholder="Description"
+              required>
+    </textarea>
+                <md-error *ngIf="desc.hasError('required')">
+                    This field is required!
+                </md-error>
+            </md-input-container>
+        </div>
+        <button *ngIf="!editMode" class="add-btn"
+                [disabled]="!timelineForm.form.valid"
+                mdTooltip="Add"
+                (click)="addTimelineBox(timelineForm.value); timelineForm.reset()">
+            <md-icon>add</md-icon>
+        </button>
+    </div>
+</form>

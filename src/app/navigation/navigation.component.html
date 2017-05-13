@@ -1,0 +1,116 @@
+<md-toolbar color="primary" class="nav">
+
+    <nav class="tabs-list">
+        <ul class="nav-list">
+            <li class="nav-item" *ngFor="let tab of tabs; let i = index">
+                <a class="nav-item-btn"
+                        [routerLink]="[tab.link]"
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                        [color]="'primary'"
+                        md-raised-button>
+                    <md-icon class="icon">{{ tab.icon }}</md-icon>
+                    {{ tab.title }}
+                </a>
+            </li>
+            <li class="nav-item" *ngIf="isLogin && isAdmin">
+                <button class="nav-item-btn"
+                        md-icon-button
+                        (click)="showMessages()">
+                    <md-icon *ngIf="isHasNewMessages"
+                             [color]="'accent'">
+                        notifications_active
+                    </md-icon>
+                    <md-icon *ngIf="!isHasNewMessages">
+                        notifications
+                    </md-icon>
+                </button>
+            </li>
+            <li class="nav-item">
+                <button *ngIf="!isLogin"
+                        class="nav-item-btn"
+                        [color]="'accent'"
+                        (click)="login()"
+                        md-raised-button>
+                    <md-icon>input</md-icon>
+                    Sign in
+                </button>
+
+                <button *ngIf="isLogin"
+                        class="nav-item-btn"
+                        [mdMenuTriggerFor]="menu"
+                        md-icon-button>
+                    <md-icon>more_vert</md-icon>
+                </button>
+                <md-menu #menu="mdMenu">
+                    <button md-menu-item (click)="navigateToProfile()">
+                        <md-icon>account_circle</md-icon>
+                        <span>My Profile</span>
+                    </button>
+                    <button md-menu-item (click)="logout()">
+                        <md-icon>exit_to_app</md-icon>
+                        <span>LogOut</span>
+                    </button>
+                </md-menu>
+            </li>
+        </ul>
+    </nav>
+
+    <nav class="tabs-list-mob">
+        <ul class="nav-list">
+            <li class="nav-item" *ngFor="let tab of tabs; let i = index">
+                <a class="nav-item-btn"
+                        [color]="'primary'"
+                   [routerLink]="[tab.link]"
+                   routerLinkActive="active"
+                   [routerLinkActiveOptions]="{ exact: true }"
+                        md-fab>
+                    <md-icon class="icon">{{ tab.icon }}</md-icon>
+                </a>
+            </li>
+            <li class="nav-item" *ngIf="isLogin && isAdmin">
+                <button *ngIf="isHasNewMessages"
+                        (click)="showMessages()"
+                        class="nav-item-btn"
+                        md-icon-button>
+                    <md-icon [color]="'accent'">notifications_active</md-icon>
+                </button>
+                <button *ngIf="!isHasNewMessages"
+                        class="nav-item-btn"
+                        md-icon-button>
+                    <md-icon >notifications</md-icon>
+                </button>
+            </li>
+            <li class="nav-item">
+                <button *ngIf="!isLogin"
+                        class="nav-item-btn"
+                        [color]="'accent'"
+                        (click)="login()"
+                        md-fab>
+                    <md-icon>input</md-icon>
+                </button>
+
+                <button *ngIf="isLogin"
+                        class="nav-item-btn"
+                        [mdMenuTriggerFor]="menu"
+                        md-icon-button>
+                    <md-icon>more_vert</md-icon>
+                </button>
+                <md-menu #menu="mdMenu">
+                    <button md-menu-item (click)="navigateToProfile()">
+                        <md-icon>account_circle</md-icon>
+                        <span>My Profile</span>
+                    </button>
+                    <button md-menu-item (click)="logout()">
+                        <md-icon>exit_to_app</md-icon>
+                        <span>LogOut</span>
+                    </button>
+                </md-menu>
+            </li>
+        </ul>
+    </nav>
+
+</md-toolbar>
+
+
+

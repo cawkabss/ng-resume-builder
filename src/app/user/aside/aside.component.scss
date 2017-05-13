@@ -1,0 +1,51 @@
+:host{
+   position: static;
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+   height:100%;
+
+ }
+.user-photo{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex-grow: 1;
+  background: no-repeat center;
+  background-size: cover;
+}
+.file-upload-wrapper{
+   position: relative;
+   display: flex;
+  flex-grow: 1;
+   width: 100%;
+   flex-direction: column;
+   overflow: hidden;
+   transition: all .5s;
+
+   &:hover {
+     background: rgba(0, 0, 0, .4);
+   }
+   &:hover .file-upload-component{
+     visibility: visible;
+     opacity: 1;
+   }
+ }
+.file-upload-component{
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+}
+.user-name{
+  flex-grow: 0;
+  background: #673ab7;
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+}
+md-input-container{
+  width: 100%;
+}

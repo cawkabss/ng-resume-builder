@@ -1,0 +1,27 @@
+:host{
+  position: relative;
+}
+[hidden] { display: none !important;}
+.refresh-btn{
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  cursor: pointer;
+}
+.repo-list{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.repo-item{
+  width: 100%;
+  padding: 15px;
+}
+@media only screen and (min-width : 768px) {
+  .repo-item{
+    max-width: 50%;
+  }
+}
+@media only screen and (min-width : 992px) {
+
+}

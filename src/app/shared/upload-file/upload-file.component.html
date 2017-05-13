@@ -1,0 +1,17 @@
+<label class="btn-upload">
+  <a *ngIf="btnType === 'fab'" class="btn"
+     mdTooltip="{{btnTooltip}}"
+     [color]="'primary'"
+     md-fab>
+    <md-icon>{{btnIcon}}</md-icon>
+  </a>
+  <a *ngIf="btnType === 'default'" class="btn"
+          mdTooltip="{{btnTooltip}}"
+          [color]="'primary'"
+          md-raised-button>
+    <md-icon>{{btnIcon}}</md-icon>
+    {{btnText}}
+  </a>
+  <input type="file"
+         (change)="uploadFileOnStorage($event.target.files[0])">
+</label>

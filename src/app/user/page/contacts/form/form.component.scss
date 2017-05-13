@@ -1,0 +1,23 @@
+md-input-container, md-select{
+  width: 100%;
+}
+.form-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .form-field + .form-field {
+    margin-left: 20px;
+  }
+}
+
+.form-field{
+  width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.form-action{
+  text-align: center;
+}

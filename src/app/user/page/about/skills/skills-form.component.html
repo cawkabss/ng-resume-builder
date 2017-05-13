@@ -1,0 +1,30 @@
+<form #skillsForm="ngForm" class="skills-form">
+  <md-input-container class="skillName">
+    <input mdInput
+           [(ngModel)]="name"
+           name="name"
+           #skillName="ngModel"
+           placeholder="Skill"
+           type="text"
+           required>
+    <md-error *ngIf="skillName.hasError('required')">
+      This field is required!
+    </md-error>
+  </md-input-container>
+  <md-slider
+          name="percentage"
+          ngModel
+          [value]="percentage"
+          [color]="'primary'"
+          (change)="setPercentage($event.value)"
+          [max]="100"
+          [min]="0"
+          [thumb-label]="true">
+  </md-slider>
+  <button class="add-btn"
+          (click)="add(skillsForm.value); skillsForm.reset()"
+          [disabled]="!skillsForm.form.valid || !percentage"
+          mdTooltip="Add">
+    <md-icon>add</md-icon>
+  </button>
+</form>

@@ -1,0 +1,36 @@
+.about-skills-i{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  &:not(:last-child){
+    margin-bottom: 30px;
+  }
+}
+.about-skills-i-title{
+  margin-bottom: 10px;
+}
+
+.delete-btn{
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.skill-line{
+  position: relative;
+  height: 3px;
+  margin: 8px;
+  background: #eee;
+}
+.skill-percentage{
+  position: absolute;
+  height: 3px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background: #3f51b5;
+}

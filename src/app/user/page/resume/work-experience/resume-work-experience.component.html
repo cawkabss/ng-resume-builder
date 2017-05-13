@@ -1,0 +1,9 @@
+<h3 class="page-block-title" appPageBlockTitle>
+  <md-icon class="icon" [color]="'primary'">school</md-icon>
+  work experience
+</h3>
+<app-timeline-list
+        [timelineList]="resume.workExperience"
+        [isEnabledEditMode]="isEnabledEditMode"
+        (timelineChanged)="onUserChange($event)">
+</app-timeline-list>

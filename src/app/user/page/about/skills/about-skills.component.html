@@ -1,0 +1,33 @@
+<h3 class="page-block-title" appPageBlockTitle>
+  <md-icon class="icon" [color]="'primary'">code</md-icon>
+  skills
+</h3>
+<ul class="about-skills-list">
+  <li class="about-skills-i"
+      *ngFor="let skill of aboutUser.skills; let i = index">
+      <h4 class="about-skills-i-title">{{skill.name}}</h4>
+    <div *ngIf="!isEnabledEditMode" class="skill-line">
+      <i class="skill-percentage" [style.width]="skill.percentage + '%'"></i>
+    </div>
+
+    <md-slider *ngIf="isEnabledEditMode"
+            [value]="skill.percentage"
+            color="primary"
+            (change)="changeSkillPercentage($event.value, i)"
+            class="example-margin"
+            [max]="100"
+            [min]="0"
+            [thumb-label]="true">
+    </md-slider>
+    <button class="delete-btn"
+            *ngIf="isEnabledEditMode"
+            mdTooltip="Delete"
+            (click)="deleteSkill(i)">
+      <md-icon [color]="'warn'">delete</md-icon>
+    </button>
+  </li>
+</ul>
+<md-error *ngIf="!aboutUser?.skills.length">
+  <h3 class="error-message">This is section can`t be an empty</h3>
+</md-error>
+<app-skills-form *ngIf="isEnabledEditMode" (addSkill)="addSkill($event)"></app-skills-form>

@@ -1,0 +1,57 @@
+<div class="page-block-description">
+
+    <p *ngIf="!isEnabledEditMode" class="resume-header-desc">
+        {{resume.resumeDesc}}
+    </p>
+
+    <div *ngIf="isEnabledEditMode" class="resume-header-form">
+        <md-input-container>
+        <textarea mdInput
+                  mdTextareaAutosize
+                  [(ngModel)]="resume.resumeDesc"
+                  [value]="resume.resumeDesc"
+                  #resumeDesc="ngModel"
+                  [placeholder]="'Description'"
+                  (change)="onUserChange(resumeDesc.valid)" required>
+        </textarea>
+            <md-error *ngIf="resumeDesc.hasError('required')">
+                This field is required!
+            </md-error>
+        </md-input-container>
+
+    </div>
+
+</div>
+
+<div class="resume-upload-btns">
+
+    <a md-raised-button
+       *ngIf="!isEnabledEditMode && resume.pdfResumeUrl"
+       [color]="'primary'"
+       href="{{resume.pdfResumeUrl}}"
+       target="_blank">
+
+        <md-icon>file_download</md-icon>
+        Download resume!
+    </a>
+
+    <app-upload-file
+            *ngIf="isEnabledEditMode"
+            class="file-upload-component"
+            [allowedExtensions]="['pdf']"
+            [btnIcon]="'file_upload'"
+            [btnTooltip]="'Upload resume'"
+            [btnText]="'Upload resume!'"
+            [folderOnStorage]="'files'"
+            [fileName]="'resume'"
+            (upload)="getDownloadUrl($event)"
+            (progress)="getProgress($event)">
+    </app-upload-file>
+    <p *ngIf="isEnabledEditMode">File can be only with pdf extension!</p>
+    <md-progress-bar class="progress"
+            *ngIf="progress && isEnabledEditMode"
+            [mode]="'determinate'"
+            [value]="progress">
+    </md-progress-bar>
+
+</div>

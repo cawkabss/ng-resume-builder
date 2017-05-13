@@ -1,0 +1,82 @@
+<h3 class="page-block-title" appPageBlockTitle>
+  <md-icon class="icon" [color]="'primary'">contact_mail</md-icon>
+  contact form
+</h3>
+<form #contactsForm="ngForm" *ngIf="showForm" class="contacts-form">
+  <div class="form-header">
+    <div class="form-field">
+      <md-icon class="icon" [color]="'primary'">perm_identity</md-icon>
+      <md-input-container>
+        <input mdInput
+               [(ngModel)]="name"
+               name="name"
+               #nameField="ngModel"
+               type="text"
+               [placeholder]="'Your name'" required>
+        <md-error *ngIf="nameField.hasError('required')">
+          This field is required!
+        </md-error>
+      </md-input-container>
+    </div>
+    <div class="form-field">
+      <md-icon class="icon" [color]="'primary'">mail_outline</md-icon>
+      <md-input-container>
+        <input mdInput
+               [(ngModel)]="email"
+               name="email"
+               type="email"
+               [email]="true"
+               #emailField="ngModel"
+               [placeholder]="'Your email'"
+               required>
+        <md-error *ngIf="emailField.hasError('required')">
+          This field is required!
+        </md-error>
+        <md-error *ngIf="emailField.hasError('email')">
+          Email is not valid!
+        </md-error>
+      </md-input-container>
+
+    </div>
+  </div>
+  <div class="form-body">
+    <div class="form-field">
+      <md-icon class="icon" [color]="'primary'">subject</md-icon>
+        <md-select
+                [(ngModel)]="subjects[0]"
+                name="subject"
+                placeholder="Subject"
+                required>
+          <md-option *ngFor="let subject of subjects" [value]="subject">
+            {{ subject }}
+          </md-option>
+        </md-select>
+    </div>
+    <div class="form-field">
+      <md-icon class="icon" [color]="'primary'">comment</md-icon>
+      <md-input-container class="textarea" [color]="color">
+    <textarea mdInput
+              mdTextareaAutosize
+              [(ngModel)]="message"
+              #messageField="ngModel"
+              name="message"
+              placeholder="Your message"
+              required>
+    </textarea>
+        <md-error *ngIf="messageField.hasError('required')">
+          This field is required!
+        </md-error>
+      </md-input-container>
+    </div>
+  </div>
+  <div class="form-action">
+    <button *ngIf="!editMode" class="submit-btn"
+            md-raised-button
+            [disabled]="contactsForm.invalid"
+            [color]="'primary'"
+            (click)="addMessage(contactsForm.value); contactsForm.reset()">
+      <md-icon class="icon">send</md-icon>
+      SEND
+    </button>
+  </div>
+</form>

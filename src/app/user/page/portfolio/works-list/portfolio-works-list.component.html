@@ -1,0 +1,21 @@
+<h3 class="page-block-title" appPageBlockTitle>
+    <md-icon class="icon" [color]="'primary'">archive</md-icon>
+    My works
+</h3>
+<md-icon *ngIf="isEnabledEditMode"
+         mdTooltip="Update"
+         (click)="updateUserReposList()"
+         class="refresh-btn">
+    refresh
+</md-icon>
+<ul class="repo-list" *ngIf="initialReposList.length">
+    <li class="repo-item" *ngFor="let repo of initialReposList; let i = index">
+        <app-portfolio-works-item
+                (hidden)="hide()"
+                [isEnabledEditMode]="isEnabledEditMode"
+                (repoItemChange)="onChange($event, i)"
+                [repoItem]="repo">
+        </app-portfolio-works-item>
+    </li>
+</ul>
+<p *ngIf="!initialReposList.length">Now, I haven`t work examples</p>

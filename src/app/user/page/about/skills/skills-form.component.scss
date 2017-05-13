@@ -1,0 +1,24 @@
+:host{
+  display: block;
+}
+.skills-form{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.skillName{
+  align-self: flex-start;
+}
+.add-btn{
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  outline: none;
+  color: #42911e;
+  cursor: pointer;
+}
+.add-btn[disabled]{
+  color: #808080;
+}

@@ -1,0 +1,20 @@
+.timeline-box-wrapper{
+  position: relative;
+  padding: 15px 20px;
+  border: 2px solid #673ab7;
+}
+.timeline-box-header + .timeline-box-desc{
+  margin-top: 15px;
+}
+.timeline-box-title + .timeline-box-years {
+  margin-top: 5px;
+}
+.delete-btn{
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}

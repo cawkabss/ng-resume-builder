@@ -1,0 +1,96 @@
+<form #repoItemForm="ngForm">
+  <md-card class="item-card" [class.hidden]="repoItem.hide">
+    <md-checkbox *ngIf="isEnabledEditMode" class="hideCheckBox"
+                 [labelPosition]="'before'"
+                 (change)="hide($event.checked)"
+                 name="hidden"
+                 [(ngModel)]="repoItem.hide">
+      Hide
+    </md-checkbox>
+    <md-card-header>
+      <md-card-title>
+        <h3 *ngIf="!isEnabledEditMode" class="h3">{{repoItem.name}}</h3>
+
+        <div *ngIf="isEnabledEditMode" class="item-name-form">
+          <md-input-container>
+            <input mdInput
+                   [(ngModel)]="repoItem.name"
+                   #name="ngModel"
+                   name="name"
+                   [placeholder]="'Name'"
+                   (change)="onChange(repoItemForm.valid)" required>
+            <md-error *ngIf="name.hasError('required')">
+              This field is required!
+            </md-error>
+          </md-input-container>
+
+        </div>
+
+      </md-card-title>
+      <md-card-subtitle>
+        <md-icon [color]="'primary'" class="icon">local_offer</md-icon>
+        <p *ngIf="!isEnabledEditMode">{{repoItem.language}}</p>
+
+        <div *ngIf="isEnabledEditMode" class="item-tags-form">
+          <md-input-container>
+            <input mdInput
+                   [(ngModel)]="repoItem.language"
+                   #languages="ngModel"
+                   name="languages"
+                   [placeholder]="'Tags'"
+                   (change)="onChange(repoItemForm.valid)" required>
+            <md-error *ngIf="languages.hasError('required')">
+              This field is required!
+            </md-error>
+          </md-input-container>
+        </div>
+
+      </md-card-subtitle>
+    </md-card-header>
+    <div md-card-image [style.background-image]="'url(' + (repoItem).image + ')'">
+      <div class="file-upload-wrapper" *ngIf="isEnabledEditMode">
+        <app-upload-file class="file-upload-component"
+                         [allowedExtensions]="['jpg', 'png']"
+                         [btnIcon]="'image'"
+                         [btnTooltip]="'Upload image'"
+                         [btnType]="'fab'"
+                         [folderOnStorage]="'images/repos/' + repoItem.id"
+                         [fileName]="'cover'"
+                         (upload)="getDownloadUrl($event)"
+                         (progress)="getProgress($event)">
+        </app-upload-file>
+        <md-progress-bar
+                *ngIf="progress"
+                [mode]="'determinate'"
+                [value]="progress">
+        </md-progress-bar>
+      </div>
+    </div>
+    <md-card-content>
+      <p *ngIf="!isEnabledEditMode">
+        {{repoItem.desc}}
+      </p>
+
+      <div *ngIf="isEnabledEditMode" class="about-header-form">
+        <md-input-container>
+        <textarea mdInput
+                  mdTextareaAutosize
+                  [(ngModel)]="repoItem.desc"
+                  [value]="repoItem.desc"
+                  #desc="ngModel"
+                  name="desc"
+                  [placeholder]="'About me'"
+                  (change)="onChange(repoItemForm.valid)" required>
+        </textarea>
+          <md-error *ngIf="desc.hasError('required')">
+            This field is required!
+          </md-error>
+        </md-input-container>
+      </div>
+
+    </md-card-content>
+    <md-card-actions>
+      <a href="{{repoItem.url}}" target="_blank" [color]="'primary'" md-raised-button>Link</a>
+    </md-card-actions>
+  </md-card>
+</form>

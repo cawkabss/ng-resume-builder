@@ -1,0 +1,13 @@
+<app-page [pageTitle]="'portfolio'">
+    <app-portfolio-header
+            appPageBlock
+            [portfolio]="viewUser.portfolio"
+            [isEnabledEditMode]="isEnabledEditMode">
+    </app-portfolio-header>
+    <app-portfolio-works-list
+            appPageBlock
+            [reposList]="viewUser.portfolio.reposList"
+            [reposUrl]="viewUser.portfolio.reposUrl"
+            [isEnabledEditMode]="isEnabledEditMode">
+    </app-portfolio-works-list>
+</app-page>

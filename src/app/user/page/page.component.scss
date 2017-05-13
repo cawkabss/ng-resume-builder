@@ -1,0 +1,64 @@
+:host {
+  display: block;
+  position: relative;
+  padding: 60px 20px  1px 20px;
+  margin-top: 100%;
+  margin-bottom: 15px;
+  flex-grow: 1;
+  background: #ffffff;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.298039);
+  transition: all .5s;
+
+  &.loaded{
+    margin-top: 0;
+  }
+}
+.page-title{
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 65px;
+
+  span{
+    position: relative;
+
+    &:after, &:before{
+      content: "";
+      position: absolute;
+      width: 75px;
+      height: 2px;
+      background: #eee;
+      top: 50%;
+      transform: translateY(50%);
+    }
+    &:before{
+      left: -95px;
+    }
+
+    &:after{
+      right: -95px;
+    }
+  }
+}
+.control-btns-list{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #fff;
+  z-index: 1;
+  cursor: pointer;
+}
+.control-btn-i + .control-btn-i{
+  margin-left: 5px;
+}
+
+@media only screen and (min-width : 992px) {
+  .control-btns-list{
+    position: fixed;
+    bottom: 25px;
+    top: auto;
+    right: 35px;
+  }
+}

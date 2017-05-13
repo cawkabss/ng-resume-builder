@@ -1,0 +1,42 @@
+@media only screen and (min-width : 320px) {
+
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+  .nav{
+    padding: 0 10px;
+  }
+  .tabs-list{
+    display: block;
+  }
+  .tabs-list-mob{
+    display: none;
+  }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+  :host{
+    width: calc(70% - 50px);
+    left: calc(30% + 25px);
+    top: 20px;
+    position: fixed;
+    z-index: 999;
+    transition: all .5s;
+
+    &.scroll {
+      top: 0;
+    }
+  }
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+
+}
