@@ -31,14 +31,15 @@ export class PortfolioWorksListComponent implements OnInit, OnChanges {
 
         // Delete items that are not found in gh
             .subscribe(repos => {
-                this.reposList = this.reposList.filter(repo => {
+
+                this.initialReposList = this.reposList.filter(repo => {
                     return this.arrayObjectIndexOf(repos, repo.id, 'id') >= 0;
                 });
 
                 // Add new items from gh
                 repos.filter(repo => {
                     return this.arrayObjectIndexOf(this.reposList, repo.id, 'id') === -1;
-                }).map(newRepo => this.reposList.unshift(new ReposItem(newRepo)));
+                }).map(newRepo => this.initialReposList.unshift(new ReposItem(newRepo)));
 
                 this.us.$isUserChange.next(true);
             });
