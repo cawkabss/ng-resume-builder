@@ -16,7 +16,11 @@ export class User {
     portfolio: UserPortfolio;
     contacts: UserContacts;
     messages?: Message[];
-
+    static addRepos(reposList: ReposItem[]) {
+        return reposList.map(repoItem => {
+            return new ReposItem(repoItem);
+        });
+    }
     constructor(uid, email, user) {
         this.uid = uid;
         this.login = user.login;
@@ -35,10 +39,5 @@ export class User {
                 });
             });
     };
-    addRepos(reposList: ReposItem[]) {
-            reposList.forEach(repoItem => {
-                this.portfolio.reposList.push(new ReposItem(repoItem));
-            });
-    }
 }
 

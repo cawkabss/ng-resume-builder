@@ -26,9 +26,15 @@ export class AboutSkillsComponent implements OnInit {
     this.us.$isUserChange.next(true);
   }
   addSkill(skill: SkillItem) {
-    this.aboutUser.skills.push(skill);
-    this.as.isSkillsValid.next(!!this.aboutUser.skills.length);
-    this.us.$isUserChange.next(true);
+    if (this.aboutUser.skills) {
+      this.aboutUser.skills.push(skill);
+      this.as.isSkillsValid.next(!!this.aboutUser.skills.length);
+      this.us.$isUserChange.next(true);
+    } else {
+      this.aboutUser.skills = [skill];
+      this.as.isSkillsValid.next(true);
+      this.us.$isUserChange.next(true);
+    }
   }
   ngOnInit() {}
 }

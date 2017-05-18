@@ -33,7 +33,7 @@ export class UserService {
             })
             .map(res => {
                 const user = new User(userUid, email, res[0]);
-                user.addRepos(res[1]);
+                user.portfolio.reposList = User.addRepos(res[1]);
                 const defaultSkills = this.defineUserSkillsFromReposLang(res[1]);
                 user.addSkills(defaultSkills);
                 return user;

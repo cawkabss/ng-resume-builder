@@ -11,7 +11,6 @@ export class PageService {
   constructor(private us: UserService) { }
 
   editPage(viewUser) {
-    console.log(viewUser)
     this.us.$viewUserClone.next(this.us.cloneUser(viewUser)); // save initial user state
     this.us.$isEnabledEditMode.next(true);
   }

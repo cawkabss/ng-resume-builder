@@ -3,6 +3,7 @@ import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {PortfolioService} from '../portfolio.service';
 import {ReposItem} from './repo-item';
 import {UserService} from '../../../user.service';
+import {User} from "../../../user";
 
 
 @Component({
@@ -10,14 +11,16 @@ import {UserService} from '../../../user.service';
     templateUrl: './portfolio-works-list.component.html',
     styleUrls: ['./portfolio-works-list.component.scss']
 })
-export class PortfolioWorksListComponent implements OnInit, OnChanges {
+export class PortfolioWorksListComponent implements OnInit {
     @Input() isEnabledEditMode;
-    @Input() reposList;
     initialReposList;
-    @Input() reposUrl;
     reposStatesList = [];
     isExamleMode = false;
+    viewUser;
     constructor(private us: UserService, private portServ: PortfolioService) {
+        this.us.$viewUser.subscribe(viewUser => {
+            this.viewUser = viewUser;
+        });
     }
 
     onChange(isValid, i) {
@@ -27,19 +30,24 @@ export class PortfolioWorksListComponent implements OnInit, OnChanges {
     }
 
     updateUserReposList() {
-        this.us.getUserRepos(this.reposUrl)
+        this.us.getUserRepos(this.viewUser.portfolio.reposUrl)
 
         // Delete items that are not found in gh
             .subscribe(repos => {
 
-                this.initialReposList = this.reposList.filter(repo => {
-                    return this.arrayObjectIndexOf(repos, repo.id, 'id') >= 0;
-                });
+                if (this.viewUser.reposList) {
+                    this.initialReposList = this.viewUser.portfolio.reposList.filter(repo => {
+                        return this.arrayObjectIndexOf(repos, repo.id, 'id') >= 0;
+                    });
 
-                // Add new items from gh
-                repos.filter(repo => {
-                    return this.arrayObjectIndexOf(this.reposList, repo.id, 'id') === -1;
-                }).map(newRepo => this.initialReposList.unshift(new ReposItem(newRepo)));
+                    // Add new items from gh
+                    repos.filter(repo => {
+                        return this.arrayObjectIndexOf(this.viewUser.portfolio.reposList, repo.id, 'id') === -1;
+                    }).map(newRepo => this.initialReposList.unshift(new ReposItem(newRepo)));
+                } else {
+                    this.viewUser.portfolio.reposList = User.addRepos(repos);
+                    this.initialReposList = User.addRepos(repos);
+                }
 
                 this.us.$isUserChange.next(true);
             });
@@ -62,15 +70,15 @@ export class PortfolioWorksListComponent implements OnInit, OnChanges {
                 this.isExamleMode = true;
             }
         });
-    }
 
-    ngOnChanges() {
         this.us.$isEnabledEditMode.subscribe(isEnabledEditMode => {
             if (!isEnabledEditMode) {
-                this.initialReposList = this.reposList ? this.reposList.filter(repo => !repo.hide) : this.reposList;
+                this.initialReposList = this.viewUser.portfolio.reposList ?
+                    this.viewUser.portfolio.reposList.filter(repo => !repo.hide) : this.viewUser.portfolio.reposList;
             } else {
-                this.initialReposList = this.reposList;
+                this.initialReposList = this.viewUser.portfolio.reposList;
             }
-        }).unsubscribe();
+        });
     }
+
 }
