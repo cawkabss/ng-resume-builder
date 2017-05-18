@@ -13,7 +13,7 @@
     </md-icon>
 </button>
 
-<ul class="repo-list" *ngIf="initialReposList.length">
+<ul class="repo-list" *ngIf="initialReposList">
     <li class="repo-item" *ngFor="let repo of initialReposList; let i = index">
         <app-portfolio-works-item
                 (hidden)="hide()"
@@ -23,4 +23,4 @@
         </app-portfolio-works-item>
     </li>
 </ul>
-<p *ngIf="!initialReposList.length">Now, I haven`t work examples</p>
+<p *ngIf="!initialReposList">Now, I haven`t work examples</p>

@@ -67,7 +67,7 @@ export class PortfolioWorksListComponent implements OnInit, OnChanges {
     ngOnChanges() {
         this.us.$isEnabledEditMode.subscribe(isEnabledEditMode => {
             if (!isEnabledEditMode) {
-                this.initialReposList = this.reposList.filter(repo => !repo.hide);
+                this.initialReposList = this.reposList ? this.reposList.filter(repo => !repo.hide) : this.reposList;
             } else {
                 this.initialReposList = this.reposList;
             }
