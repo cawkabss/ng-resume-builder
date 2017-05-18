@@ -46,7 +46,7 @@ export class PortfolioWorksListComponent implements OnInit {
                     }).map(newRepo => this.initialReposList.unshift(new ReposItem(newRepo)));
                 } else {
                     this.viewUser.portfolio.reposList = User.addRepos(repos);
-                    this.initialReposList = User.addRepos(repos);
+                    this.initialReposList = this.viewUser.portfolio.reposList;
                 }
 
                 this.us.$isUserChange.next(true);
