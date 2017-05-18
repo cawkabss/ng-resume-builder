@@ -27,7 +27,7 @@
     </button>
   </li>
 </ul>
-<md-error *ngIf="!aboutUser?.skills.length">
+<md-error *ngIf="!aboutUser?.skills">
   <h3 class="error-message">This is section can`t be an empty</h3>
 </md-error>
 <app-skills-form *ngIf="isEnabledEditMode" (addSkill)="addSkill($event)"></app-skills-form>

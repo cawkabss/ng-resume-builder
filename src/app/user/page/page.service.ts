@@ -11,12 +11,14 @@ export class PageService {
   constructor(private us: UserService) { }
 
   editPage(viewUser) {
+    console.log(viewUser)
     this.us.$viewUserClone.next(this.us.cloneUser(viewUser)); // save initial user state
     this.us.$isEnabledEditMode.next(true);
   }
 
   cancelChanges() {
     this.us.$viewUserClone.subscribe(viewUser => {
+      console.log(viewUser);
       this.us.$viewUser.next(this.us.cloneUser(viewUser)); // set initial state
       this.us.$isEnabledEditMode.next(false);
       this.us.$isUserChange.next(false);
